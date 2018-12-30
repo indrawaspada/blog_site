@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Kontak Saya
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'contact' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Kirim Email">
+    </form>
+{% endblock %}
